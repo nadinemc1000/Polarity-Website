@@ -31,6 +31,7 @@ html {
 
 body {
   font-family: var(--font-primary);
+  font-weight: 400;
   color: var(--color-black);
   background: var(--color-white);
   line-height: 1.6;
@@ -228,7 +229,7 @@ section[id] {
 }
 
 .nav__links a {
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.03em;
   transition: opacity 0.2s;
@@ -245,8 +246,11 @@ section[id] {
 .nav--primary {
   position: sticky;
   top: 0;
-  background: var(--color-red);
+  background: rgba(238, 62, 38, 0.55);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   color: var(--color-white);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .nav--primary .nav__links a {
@@ -297,21 +301,28 @@ section[id] {
 .hero {
   padding: 60px 0 0;
   text-align: center;
+  background: var(--color-white);
+  overflow: hidden;
 }
 
-.hero__title {
-  font-size: clamp(4rem, 12vw, 10rem);
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  line-height: 1;
-  margin-bottom: 24px;
+/* Polarity title logo image */
+.hero__logo {
+  width: 80%;
+  max-width: 760px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  z-index: 0;
 }
 
+/* Couch image pulls up to overlap the logo */
 .hero__image {
   width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  min-height: 400px;
+  display: block;
+  position: relative;
+  margin-top: -80px;
+  z-index: 1;
 }
 
 .hero__subtitle {
@@ -320,6 +331,8 @@ section[id] {
   letter-spacing: 0.05em;
   padding: 24px 0 60px;
   color: var(--color-black);
+  position: relative;
+  z-index: 2;
 }
 
 /* ============================================================
@@ -685,6 +698,49 @@ section[id] {
   color: var(--color-gray-dark);
   padding: 48px 0;
   text-align: center;
+}
+
+/* ============================================================
+   SCROLL CARD STACK ANIMATION
+   ============================================================ */
+
+/* Every card-section sticks flush with the nav, full solid background.
+   min-height >100vh gives the user time to read before the next card slides in. */
+.scroll-card {
+  position: sticky;
+  top: 0;
+  background: var(--color-white);
+  min-height: 115vh;
+  padding-top: calc(var(--nav-height) + 80px);
+}
+
+/* Gray variant must explicitly re-assert its background so it doesn't
+   bleed through when a white card is sticky on top of it */
+.section--gray.scroll-card {
+  background: var(--color-gray-light);
+}
+
+/* Incrementing z-indexes so each card sits above the previous */
+#how-it-works { z-index: 10; }
+#use-cases    { z-index: 20; }
+#preorder     { z-index: 30; }
+#about        { z-index: 40; }
+#company-info { z-index: 50; }
+/* nav stays at z-index: 100 — always on top */
+
+/* ============================================================
+   SCROLL ENTRANCE ANIMATIONS (fade + slide up)
+   ============================================================ */
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ============================================================
