@@ -241,6 +241,42 @@ section[id] {
 }
 
 /* ============================================================
+   HAMBURGER BUTTON
+   ============================================================ */
+.nav__hamburger {
+  display: none; /* hidden on desktop */
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  flex-shrink: 0;
+}
+
+.nav__hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-white);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate to × when open */
+.nav--open .nav__hamburger span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav--open .nav__hamburger span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav--open .nav__hamburger span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ============================================================
    NAVIGATION — PRIMARY (red, sticky)
    ============================================================ */
 .nav--primary {
@@ -1003,6 +1039,52 @@ section[id] {
 
   .grid-5 {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* ── Mobile nav ───────────────────────────────────────────── */
+  .nav__hamburger {
+    display: flex;
+  }
+
+  /* Hide links by default; revealed when .nav--open is toggled */
+  .nav__links {
+    display: none;
+    position: absolute;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: rgba(238, 62, 38, 0.96);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    padding: 8px 0 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .nav--open .nav__links {
+    display: flex;
+  }
+
+  .nav__links li {
+    width: 100%;
+  }
+
+  .nav__links li a {
+    display: block;
+    padding: 14px 24px;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Pre Order button sits comfortably at the bottom of the menu */
+  .nav__preorder-item a {
+    padding: 16px 24px;
+    border-bottom: none;
+  }
+
+  .preorder-btn-img {
+    height: 40px;
   }
 }
 
