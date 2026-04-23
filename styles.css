@@ -229,6 +229,24 @@ h1, h2, h3 {
 .nav--open .nav__hamburger span:nth-child(2) { opacity: 0; transform: scaleX(0); }
 .nav--open .nav__hamburger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
+/* Nav cart */
+.nav__cart-item { margin-left: 8px; }
+
+.nav__cart {
+  display: flex;
+  align-items: center;
+  opacity: 0.75;
+  transition: opacity 0.2s;
+}
+
+.nav__cart:hover { opacity: 1; }
+
+.nav__cart-img {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+
 /* Nav logo image */
 .nav__logo-img {
   height: 40px;
@@ -302,7 +320,7 @@ h1, h2, h3 {
 /* The Vision Text asset — full width heading image */
 .vision__heading-img {
   width: 100%;
-  max-width: 780px;
+  max-width: 520px;
   height: auto;
   display: block;
   margin: 0 auto 48px;
@@ -591,7 +609,59 @@ h1, h2, h3 {
   line-height: 1.4;
 }
 
-.shop__btn { align-self: flex-start; }
+.shop__qty-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid var(--color-black);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  width: 36px;
+  height: 40px;
+  font-size: 1.2rem;
+  font-family: var(--font-display);
+  color: var(--color-black);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.qty-btn:hover { background: var(--color-gray-light); }
+
+.qty-input {
+  width: 44px;
+  height: 40px;
+  border: none;
+  border-left: 1.5px solid var(--color-black);
+  border-right: 1.5px solid var(--color-black);
+  background: transparent;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-black);
+  -moz-appearance: textfield;
+}
+
+.qty-input::-webkit-outer-spin-button,
+.qty-input::-webkit-inner-spin-button { -webkit-appearance: none; }
+
+.qty-input:focus { outline: none; }
+
+.shop__btn { align-self: center; }
 
 /* ============================================================
    BUSINESS MODEL
@@ -731,13 +801,16 @@ h1, h2, h3 {
   overflow: hidden;
 }
 
-.accordion__embed--pdf {
-  height: 480px;
+.accordion__chart-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin-top: 16px;
 }
 
 .accordion__embed--sheet {
-  height: 400px;
-  overflow-x: auto;
+  height: 380px;
+  overflow: auto;
 }
 
 .business__img {

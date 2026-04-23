@@ -24,6 +24,7 @@
         <li><a href="#vision" data-section="vision">Vision</a></li>
         <li><a href="#features" data-section="features">Features</a></li>
         <li><a href="#about" data-section="about">About</a></li>
+        <li class="nav__cart-item"><a href="checkout.html" class="nav__cart" aria-label="Checkout"><img src="Assets/Cart--Streamline-Ionic-Filled.png" alt="Cart" class="nav__cart-img"></a></li>
       </ul>
     </div>
   </nav>
@@ -135,7 +136,14 @@
             <span class="swatch__label">Heather<br>Smoke</span>
           </div>
         </div>
-        <button class="btn btn--red shop__btn">Preorder Now &rarr;</button>
+        <div class="shop__qty-row">
+          <div class="qty-control">
+            <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
+            <input class="qty-input" id="qty-input" type="number" value="1" min="1" max="99" aria-label="Quantity">
+            <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
+          </div>
+          <a href="checkout.html" class="btn btn--red shop__btn">Preorder Now &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
@@ -161,7 +169,7 @@
                 <li>True modular flexibility</li>
                 <li>Social-first functionality</li>
               </ul>
-              <iframe src="Assets/Competitive Analysis chart 1.pdf" class="accordion__embed accordion__embed--pdf" title="Competitive Analysis Chart"></iframe>
+              <img src="Assets/Competitive Analysis chart 1.png" alt="Competitive Analysis Chart" class="accordion__chart-img">
             </div>
           </li>
 
@@ -290,11 +298,11 @@
 
       <h2 class="team__heading fade-up">Polarity Team</h2>
       <div class="team__row">
-        <div class="team-member fade-up" data-delay="1"><div class="team__photo"></div><p class="team__name">Reed Garzon</p></div>
-        <div class="team-member fade-up" data-delay="2"><div class="team__photo"></div><p class="team__name">Anika Nambisan</p></div>
-        <div class="team-member fade-up" data-delay="3"><div class="team__photo"></div><p class="team__name">James Plank</p></div>
-        <div class="team-member fade-up" data-delay="4"><div class="team__photo"></div><p class="team__name">Jacqueline Zheng</p></div>
-        <div class="team-member fade-up" data-delay="5"><div class="team__photo"></div><p class="team__name">Elle Zhou</p></div>
+        <div class="team-member fade-up" data-delay="1"><img src="Assets/headshot reed.png" alt="Reed Garzon" class="team__photo"><p class="team__name">Reed Garzon</p></div>
+        <div class="team-member fade-up" data-delay="2"><img src="Assets/headshot anika.png" alt="Anika Nambisan" class="team__photo"><p class="team__name">Anika Nambisan</p></div>
+        <div class="team-member fade-up" data-delay="3"><img src="Assets/headshot james.png" alt="James Plank" class="team__photo"><p class="team__name">James Plank</p></div>
+        <div class="team-member fade-up" data-delay="4"><img src="Assets/headshot jaqueline.png" alt="Jacqueline Zheng" class="team__photo"><p class="team__name">Jacqueline Zheng</p></div>
+        <div class="team-member fade-up" data-delay="5"><img src="Assets/headshot elle.png" alt="Elle Zhou" class="team__photo"><p class="team__name">Elle Zhou</p></div>
       </div>
 
       <h2 class="team__heading fade-up">Web Design Team</h2>
@@ -383,17 +391,35 @@
       onScroll(); // run once on load
     })();
 
+    // ── Quantity selector ────────────────────────────────────
+    (function () {
+      const input = document.getElementById('qty-input');
+      document.getElementById('qty-minus').addEventListener('click', function () {
+        const val = parseInt(input.value) || 1;
+        if (val > 1) input.value = val - 1;
+      });
+      document.getElementById('qty-plus').addEventListener('click', function () {
+        const val = parseInt(input.value) || 1;
+        if (val < 99) input.value = val + 1;
+      });
+      input.addEventListener('change', function () {
+        let val = parseInt(input.value) || 1;
+        val = Math.max(1, Math.min(99, val));
+        input.value = val;
+      });
+      // Save qty to localStorage so checkout page can read it
+      document.querySelector('.shop__btn').addEventListener('click', function () {
+        localStorage.setItem('polarityQty', parseInt(input.value) || 1);
+      });
+    })();
+
     // ── Business model accordion ─────────────────────────────
     (function () {
       function openItem(item) {
         const body = item.querySelector('.accordion__body');
         item.classList.add('is-open');
         item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'true');
-        // iframes don't contribute to scrollHeight until loaded — use a generous fallback
-        const hasEmbed = body.querySelector('.accordion__embed');
-        body.style.height = hasEmbed
-          ? (body.scrollHeight + 600) + 'px'
-          : body.scrollHeight + 'px';
+        body.style.height = body.scrollHeight + 'px';
       }
       function closeItem(item) {
         const body = item.querySelector('.accordion__body');
