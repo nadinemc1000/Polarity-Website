@@ -721,6 +721,25 @@ h1, h2, h3 {
   color: var(--color-red);
 }
 
+/* Embedded iframes inside accordion */
+.accordion__embed {
+  display: block;
+  width: 100%;
+  margin-top: 16px;
+  border: 1px solid #B5C2B9;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.accordion__embed--pdf {
+  height: 480px;
+}
+
+.accordion__embed--sheet {
+  height: 400px;
+  overflow-x: auto;
+}
+
 .business__img {
   aspect-ratio: 1 / 1;
   width: 85%;

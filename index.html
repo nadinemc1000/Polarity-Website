@@ -161,6 +161,7 @@
                 <li>True modular flexibility</li>
                 <li>Social-first functionality</li>
               </ul>
+              <iframe src="Assets/Competitive Analysis chart 1.pdf" class="accordion__embed accordion__embed--pdf" title="Competitive Analysis Chart"></iframe>
             </div>
           </li>
 
@@ -243,7 +244,7 @@
               Financial Pro Forma <span class="accordion__icon">+</span>
             </button>
             <div class="accordion__body">
-              <p>Coming soon.</p>
+              <iframe src="Polarity Financial Pro Forma/Sheet1.html" class="accordion__embed accordion__embed--sheet" title="Financial Pro Forma"></iframe>
             </div>
           </li>
 
@@ -388,7 +389,11 @@
         const body = item.querySelector('.accordion__body');
         item.classList.add('is-open');
         item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'true');
-        body.style.height = body.scrollHeight + 'px';
+        // iframes don't contribute to scrollHeight until loaded — use a generous fallback
+        const hasEmbed = body.querySelector('.accordion__embed');
+        body.style.height = hasEmbed
+          ? (body.scrollHeight + 600) + 'px'
+          : body.scrollHeight + 'px';
       }
       function closeItem(item) {
         const body = item.querySelector('.accordion__body');
