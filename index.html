@@ -14,24 +14,16 @@
   <nav class="nav nav--primary">
     <div class="container nav__inner">
       <a href="index.html" aria-label="Polarity home">
-        <img src="Assets/Logo White.png" alt="Polarity" class="nav__logo-img">
+        <img src="Assets/fixed logo.png" alt="Polarity" class="nav__logo-img">
       </a>
       <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
+        <span></span><span></span><span></span>
       </button>
       <ul class="nav__links">
-        <li><a href="#how-it-works">How it Works</a></li>
-        <li><a href="#use-cases">Use Cases</a></li>
-        <li><a href="#about">About Polarity</a></li>
-        <li><a href="#company-info">Company Info</a></li>
-        <li><a href="bts.html">BTS</a></li>
-        <li class="nav__preorder-item">
-          <a href="#preorder" class="nav__preorder-btn" aria-label="Pre Order Now">
-            <img src="Assets/Pre Order Now Button.png" alt="Pre Order Now" class="preorder-btn-img">
-          </a>
-        </li>
+        <li><a href="#hero" data-section="hero">Home</a></li>
+        <li><a href="#vision" data-section="vision">Vision</a></li>
+        <li><a href="#features" data-section="features">Features</a></li>
+        <li><a href="#about" data-section="about">About</a></li>
       </ul>
     </div>
   </nav>
@@ -39,209 +31,197 @@
   <!-- ============================================================
        HERO
        ============================================================ -->
-  <section class="hero">
-    <div class="container">
-      <img src="Assets/Polarity Title.png" alt="Polarity" class="hero__logo">
-    </div>
-    <img src="Images/Couch image.png" alt="Polarity modular couch" class="hero__image">
-    <div class="container">
-      <p class="hero__subtitle">Adapting to Social Situations</p>
+  <section class="hero" id="hero">
+    <!-- Title spans full page width — no container wrapper -->
+    <img src="Assets/Hero Title.png" alt="Polarity" class="hero__title-img hero__title-reveal">
+    <p class="hero__subtitle fade-up" data-delay="1">Adapting to Social Situations.</p>
+    <div class="hero__img-wrap fade-up" data-delay="2">
+      <img src="Assets/Hero couch photo.png" alt="Polarity modular couch" class="hero__img">
     </div>
   </section>
 
   <!-- ============================================================
-       HOW IT WORKS
+       THE VISION
        ============================================================ -->
-  <section id="how-it-works" class="section section--gray scroll-card">
-    <div class="container">
-      <h2 class="section-title fade-up">How it Works</h2>
-      <div class="how-it-works__content fade-up" style="transition-delay: 0.15s">
-        <ul class="how-it-works__list">
-          <li>Modular Couch Seats</li>
-          <li>Adaptable Backrest &amp; Seat</li>
-          <li>Shaped to Move Around</li>
-          <li>XXXXX</li>
-          <li>XXXXX</li>
-        </ul>
-        <div class="how-it-works__diagram">
-          <div class="placeholder placeholder--square placeholder--circle" role="img" aria-label="Circular configuration diagram">
-            CIRCULAR DIAGRAM
-          </div>
-        </div>
+  <section class="vision" id="vision">
+    <img src="Assets/The Vision Text.png" alt="The Vision" class="vision__heading-img fade-up">
+    <div class="vision__body">
+      <p class="fade-up" data-delay="1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      <p class="fade-up" data-delay="2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FEATURES
+       ============================================================ -->
+  <section class="features" id="features">
+
+    <!-- Feature 1 -->
+    <div class="feature feature--backrest">
+      <div class="feature__card feature__card--text fade-up">
+        <h3 class="feature__heading">Adaptable Backrest</h3>
+        <p class="feature__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      </div>
+      <div class="feature__backrest-right fade-up" data-delay="1">
+        <img src="Assets/backrest photo.png" alt="Adaptable backrest" class="feature__backrest-img">
       </div>
     </div>
+
+    <!-- Feature 2 -->
+    <div class="feature feature--modular">
+      <img src="Assets/Modular Design Diagram.png" alt="Modular design diagram" class="feature__diagram fade-up">
+      <div class="feature__card feature__card--text feature__card--right fade-up" data-delay="1">
+        <h3 class="feature__heading">Modular Design</h3>
+        <p class="feature__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      </div>
+    </div>
+
+    <!-- Feature 3 -->
+    <div class="feature feature--function">
+      <div class="feature__card feature__card--text feature__card--bottom fade-up">
+        <h3 class="feature__heading">Third Function</h3>
+        <p class="feature__body">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+      </div>
+      <div class="feature__card feature__card--media fade-up" data-delay="1">
+        <div class="dot-grid" role="img" aria-label="Configuration dot grid"></div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ============================================================
-       USE CASES
+       SHOP NOW / PREORDER
        ============================================================ -->
-  <section id="use-cases" class="section scroll-card">
-    <div class="container">
-      <h2 class="section-title fade-up">Use Cases</h2>
-      <div class="use-cases__content fade-up" style="transition-delay: 0.15s">
-        <div class="placeholder placeholder--square placeholder--red use-cases__image" role="img" aria-label="Use case product image">
-          USE CASE IMAGE
-        </div>
-        <p class="use-cases__body">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-          dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  <section class="shop" id="shop">
+    <div class="container shop__inner">
+      <div class="shop__img fade-up">
+        <img src="Assets/Overhead Couch Photo.png" alt="Polarity couch overhead view" class="shop__photo">
+      </div>
+      <div class="shop__content fade-up" data-delay="1">
+        <h2 class="shop__heading">Shop Now</h2>
+        <p class="shop__pricing">
+          Polarity Price:&ensp;<strong>$X,000</strong>
+          <span class="shop__pricing-sep">&ensp;&ensp;</span>
+          Due Today:&ensp;<strong>$250</strong>
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       PREORDER
-       ============================================================ -->
-  <section id="preorder" class="section section--gray scroll-card">
-    <div class="container">
-      <h2 class="section-title fade-up">Preorder</h2>
-      <div class="preorder__layout fade-up" style="transition-delay: 0.15s">
-        <div class="placeholder placeholder--wide preorder__image" role="img" aria-label="Polarity couch preorder image">
-          COUCH PREORDER IMAGE
-        </div>
-        <div class="preorder__form">
-          <p class="preorder__form-title">Pre Order Now</p>
-          <label class="qty-label" for="qty">Quantity</label>
-          <div class="qty-control">
-            <button class="qty-btn" aria-label="Decrease quantity" onclick="adjustQty(-1)">&#8722;</button>
-            <input class="qty-input" id="qty" type="number" value="1" min="1" aria-label="Quantity">
-            <button class="qty-btn" aria-label="Increase quantity" onclick="adjustQty(1)">&#43;</button>
+        <div class="shop__swatches">
+          <div class="swatch">
+            <div class="swatch__circle swatch__circle--cream"></div>
+            <span class="swatch__label">Cream<br>Beige</span>
           </div>
-          <button class="btn btn--red preorder__btn">Pre Order Now &rarr;</button>
+          <div class="swatch">
+            <div class="swatch__circle swatch__circle--sage"></div>
+            <span class="swatch__label">Custom<br>Colors</span>
+          </div>
+          <div class="swatch">
+            <div class="swatch__circle swatch__circle--dark"></div>
+            <span class="swatch__label">Heather<br>Smoke</span>
+          </div>
         </div>
+        <button class="btn btn--red shop__btn">Preorder Now &rarr;</button>
       </div>
     </div>
   </section>
 
   <!-- ============================================================
-       POLARITY TEAM
+       BUSINESS MODEL
        ============================================================ -->
-  <section id="about" class="section scroll-card">
-    <div class="container">
-      <h2 class="section-title fade-up">Polarity Team</h2>
-
-      <h3 class="team__sub-heading fade-up" style="transition-delay: 0.1s">Product Team</h3>
-      <div class="grid-5 team__row fade-up" style="transition-delay: 0.2s">
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Person</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Person</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Person</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Person</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Person</p>
-        </div>
-      </div>
-
-      <h3 class="team__sub-heading fade-up" style="transition-delay: 0.3s">Web Design Team</h3>
-      <div class="grid-5 team__row fade-up" style="transition-delay: 0.4s">
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Emily</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Nadine</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Mark Cuban</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Zeinab</p>
-        </div>
-        <div class="team__member">
-          <div class="placeholder placeholder--circle team__photo" role="img" aria-label="Team member photo"></div>
-          <p class="team__name">Catheribe</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================================================
-       COMPANY INFO
-       ============================================================ -->
-  <section id="company-info" class="section section--gray scroll-card">
-    <div class="container">
-      <h2 class="section-title fade-up">Company Info</h2>
-      <div class="company-info__content fade-up" style="transition-delay: 0.15s">
-        <ul class="company-info__links">
+  <section class="business" id="about">
+    <div class="container business__inner">
+      <div class="business__left fade-up">
+        <h2 class="business__heading">Business Model</h2>
+        <ul class="business__links">
           <li><a href="#">Competitive Analysis</a></li>
           <li><a href="#">Investment &amp; Business Revenue Model</a></li>
           <li><a href="#">Business Model Canvas</a></li>
           <li><a href="#">Financial Pro Forma</a></li>
         </ul>
-        <div class="company-info__visuals">
-          <div class="placeholder placeholder--red company-info__img" role="img" aria-label="Company info visual">
-            CHANGING IMAGE
-          </div>
-        </div>
+      </div>
+      <div class="business__right fade-up" data-delay="1">
+        <div class="placeholder placeholder--red business__img" role="img" aria-label="Business model image"></div>
       </div>
     </div>
+  </section>
+
+  <!-- ============================================================
+       BTS PREVIEW
+       ============================================================ -->
+  <section class="bts-preview">
+    <div class="container">
+      <h2 class="bts-preview__heading">BTS</h2>
+      <div class="bts-preview__grid">
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 1">BTS 1</div>
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 2">BTS 2</div>
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 3">BTS 3</div>
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 4">BTS 4</div>
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 5">BTS 5</div>
+        <div class="placeholder placeholder--wide" role="img" aria-label="BTS photo 6">BTS 6</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       TEAM
+       ============================================================ -->
+  <section class="team">
+
+    <h2 class="team__heading fade-up">Polarity Team</h2>
+    <div class="team__row">
+      <div class="team-member fade-up" data-delay="1"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="2"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="3"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="4"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="5"><div class="team__photo"></div><p class="team__name">Person</p></div>
+    </div>
+
+    <h2 class="team__heading fade-up">Web Design Team</h2>
+    <div class="team__row">
+      <div class="team-member fade-up" data-delay="1"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="2"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="3"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="4"><div class="team__photo"></div><p class="team__name">Person</p></div>
+      <div class="team-member fade-up" data-delay="5"><div class="team__photo"></div><p class="team__name">Person</p></div>
+    </div>
+
   </section>
 
   <!-- ============================================================
        FOOTER
        ============================================================ -->
   <footer class="footer">
-    <div class="container footer__inner">
-
-      <div class="footer__left">
-        <p class="footer__cta">Try Polarity Now</p>
-        <div class="footer__pill">
-          <input class="footer__pill-input" type="email" placeholder="Enter your email" aria-label="Email address">
-          <a href="#preorder" class="footer__pill-btn" aria-label="Pre Order Now">
-            <img src="Assets/Pre Order Now Button.png" alt="Pre Order Now" class="preorder-btn-img">
-          </a>
+    <div class="footer__title-area">
+      <img src="Assets/Hero Title.png" alt="Polarity" class="footer__title-img">
+    </div>
+    <div class="footer__bottom">
+      <div class="container footer__inner">
+        <div class="footer__left">
+          <p class="footer__cta">Try Polarity Now</p>
+          <div class="footer__pill">
+            <input class="footer__pill-input" type="email" placeholder="Enter your email" aria-label="Email address">
+            <button class="btn btn--red footer__pill-btn">→</button>
+          </div>
         </div>
-        <p class="footer__count">X,XXX people tried</p>
+        <div class="footer__right">
+          <p class="footer__social-heading">Social Media</p>
+          <ul class="footer__social-links">
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">LinkedIn</a></li>
+            <li><a href="#">X</a></li>
+          </ul>
+        </div>
       </div>
-
-      <div class="footer__right">
-        <p class="footer__social-heading">Social Media</p>
-        <ul class="footer__social-links">
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">X</a></li>
-        </ul>
-      </div>
-
     </div>
   </footer>
 
   <script>
-    function adjustQty(delta) {
-      const input = document.getElementById('qty');
-      const current = parseInt(input.value, 10) || 1;
-      input.value = Math.max(1, current + delta);
-    }
-
-    // ── Hamburger menu ────────────────────────────────────────
+    // ── Hamburger nav ────────────────────────────────────────
     (function () {
       const hamburger = document.querySelector('.nav__hamburger');
       const nav       = document.querySelector('.nav');
-
       hamburger.addEventListener('click', function () {
         const isOpen = nav.classList.toggle('nav--open');
         hamburger.setAttribute('aria-expanded', isOpen);
       });
-
-      // Close menu when a link is tapped on mobile
       document.querySelectorAll('.nav__links a').forEach(function (link) {
         link.addEventListener('click', function () {
           nav.classList.remove('nav--open');
@@ -250,17 +230,46 @@
       });
     })();
 
-    // ── Fade-up entrance animations ───────────────────────────
+    // ── Scroll-spy: underline the nav link for the current section ──
+    (function () {
+      const sections = ['hero', 'vision', 'features', 'about'];
+      const navLinks = document.querySelectorAll('.nav__links a[data-section]');
+      const navHeight = document.querySelector('.nav').offsetHeight;
+
+      function setActive(id) {
+        navLinks.forEach(function (link) {
+          link.classList.toggle('active', link.dataset.section === id);
+        });
+      }
+
+      function onScroll() {
+        // Walk sections bottom-up; first one whose top is above mid-screen wins
+        let current = sections[0];
+        sections.forEach(function (id) {
+          const el = document.getElementById(id);
+          if (el && el.getBoundingClientRect().top <= navHeight + 80) {
+            current = id;
+          }
+        });
+        setActive(current);
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // run once on load
+    })();
+
+    // ── Scroll entrance animations ───────────────────────────
     (function () {
       const observer = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target); // animate once only
+            observer.unobserve(entry.target);
           }
         });
       }, { threshold: 0.12 });
 
+      // Observe immediately for above-fold elements, slight delay for rest
       document.querySelectorAll('.fade-up').forEach(function (el) {
         observer.observe(el);
       });
