@@ -24,8 +24,10 @@
         <li><a href="#vision" data-section="vision">Vision</a></li>
         <li><a href="#features" data-section="features">Features</a></li>
         <li><a href="#about" data-section="about">About</a></li>
-        <li class="nav__cart-item"><a href="checkout.html" class="nav__cart" aria-label="Checkout"><img src="Assets/Cart--Streamline-Ionic-Filled.png" alt="Cart" class="nav__cart-img"></a></li>
       </ul>
+      <a href="checkout.html" class="nav__cart" aria-label="Checkout">
+        <img src="Assets/Cart--Streamline-Ionic-Filled.png" alt="Cart" class="nav__cart-img">
+      </a>
     </div>
   </nav>
 
@@ -118,7 +120,7 @@
       <div class="shop__content fade-up" data-delay="1">
         <h2 class="shop__heading">Shop Now</h2>
         <p class="shop__pricing">
-          Polarity Price:&ensp;<strong>$X,000</strong>
+          Unit Price:&ensp;<strong>$X,000</strong>
           <span class="shop__pricing-sep">&ensp;&ensp;</span>
           Due Today:&ensp;<strong>$250</strong>
         </p>
@@ -136,6 +138,7 @@
             <span class="swatch__label">Heather<br>Smoke</span>
           </div>
         </div>
+        <p class="shop__qty-label">Units</p>
         <div class="shop__qty-row">
           <div class="qty-control">
             <button class="qty-btn" id="qty-minus" aria-label="Decrease quantity">−</button>
@@ -169,7 +172,6 @@
                 <li>True modular flexibility</li>
                 <li>Social-first functionality</li>
               </ul>
-              <img src="Assets/Competitive Analysis chart 1.png" alt="Competitive Analysis Chart" class="accordion__chart-img">
             </div>
           </li>
 
@@ -252,14 +254,22 @@
               Financial Pro Forma <span class="accordion__icon">+</span>
             </button>
             <div class="accordion__body">
-              <iframe src="Polarity Financial Pro Forma/Sheet1.html" class="accordion__embed accordion__embed--sheet" title="Financial Pro Forma"></iframe>
+              <p style="font-size:0.85rem;color:var(--color-gray-dark);line-height:1.7;">See the full financial projection in the panel →</p>
             </div>
           </li>
 
         </ul>
       </div>
       <div class="business__right fade-up" data-delay="1">
-        <div class="placeholder placeholder--red business__img" role="img" aria-label="Business model image"></div>
+        <div class="business__panel business__panel--default is-active">
+          <div class="placeholder placeholder--red business__img" role="img" aria-label="Business model image"></div>
+        </div>
+        <div class="business__panel" id="panel-competitive">
+          <img src="Assets/Competitive Analysis chart 1.png" alt="Competitive Analysis Chart" class="business__panel-img">
+        </div>
+        <div class="business__panel" id="panel-proforma">
+          <iframe src="Polarity Financial Pro Forma/Sheet1.html" class="accordion__embed accordion__embed--sheet" title="Financial Pro Forma"></iframe>
+        </div>
       </div>
     </div>
   </section>
@@ -270,21 +280,27 @@
   <section class="bts-preview">
     <div class="container">
       <h2 class="bts-preview__heading fade-up">BTS</h2>
+      <p class="bts-preview__sub fade-up" data-delay="1">Behind the scenes — design, prototyping, and the making of Polarity.</p>
       <div class="bts-preview__grid">
         <div class="bts-preview__cell bts-preview__cell--wide" aria-label="BTS photo 1">
           <img src="Assets/BTS 2.png" alt="BTS photo 1" class="bts-preview__img">
+          <div class="bts-preview__caption">Design &amp; Concept</div>
         </div>
         <div class="bts-preview__cell" aria-label="BTS photo 2">
           <img src="Assets/BTS 1.png" alt="BTS photo 2" class="bts-preview__img">
+          <div class="bts-preview__caption">Studio Session</div>
         </div>
         <div class="bts-preview__cell" aria-label="BTS photo 3">
           <img src="Assets/BTS 3.png" alt="BTS photo 3" class="bts-preview__img">
+          <div class="bts-preview__caption">Prototyping</div>
         </div>
         <div class="bts-preview__cell" aria-label="BTS photo 4">
           <img src="Assets/BTS 4.png" alt="BTS photo 4" class="bts-preview__img">
+          <div class="bts-preview__caption">Materials</div>
         </div>
         <div class="bts-preview__cell" aria-label="BTS photo 5">
           <img src="Assets/BTS 5.png" alt="BTS photo 5" class="bts-preview__img">
+          <div class="bts-preview__caption">Assembly</div>
         </div>
       </div>
     </div>
@@ -298,20 +314,20 @@
 
       <h2 class="team__heading fade-up">Polarity Team</h2>
       <div class="team__row">
-        <div class="team-member fade-up" data-delay="1"><img src="Assets/headshot reed.png" alt="Reed Garzon" class="team__photo"><p class="team__name">Reed Garzon</p></div>
-        <div class="team-member fade-up" data-delay="2"><img src="Assets/headshot anika.png" alt="Anika Nambisan" class="team__photo"><p class="team__name">Anika Nambisan</p></div>
-        <div class="team-member fade-up" data-delay="3"><img src="Assets/headshot james.png" alt="James Plank" class="team__photo"><p class="team__name">James Plank</p></div>
-        <div class="team-member fade-up" data-delay="4"><img src="Assets/headshot jaqueline.png" alt="Jacqueline Zheng" class="team__photo"><p class="team__name">Jacqueline Zheng</p></div>
-        <div class="team-member fade-up" data-delay="5"><img src="Assets/headshot elle.png" alt="Elle Zhou" class="team__photo"><p class="team__name">Elle Zhou</p></div>
+        <div class="team-member fade-up" data-delay="1"><div class="team__photo-wrap"><img src="Assets/headshot reed.png" alt="Reed Garzon" class="team__photo"><div class="team__role">Product Strategy &amp; Brand Vision</div></div><p class="team__name">Reed Garzon</p></div>
+        <div class="team-member fade-up" data-delay="2"><div class="team__photo-wrap"><img src="Assets/headshot anika.png" alt="Anika Nambisan" class="team__photo"><div class="team__role">Industrial Design &amp; Prototyping</div></div><p class="team__name">Anika Nambisan</p></div>
+        <div class="team-member fade-up" data-delay="3"><div class="team__photo-wrap"><img src="Assets/headshot james.png" alt="James Plank" class="team__photo"><div class="team__role">Materials &amp; Manufacturing</div></div><p class="team__name">James Plank</p></div>
+        <div class="team-member fade-up" data-delay="4"><div class="team__photo-wrap"><img src="Assets/headshot jaqueline.png" alt="Jacqueline Zheng" class="team__photo"><div class="team__role">Market Research &amp; Business Model</div></div><p class="team__name">Jacqueline Zheng</p></div>
+        <div class="team-member fade-up" data-delay="5"><div class="team__photo-wrap"><img src="Assets/headshot elle.png" alt="Elle Zhou" class="team__photo"><div class="team__role">Finance &amp; Go-to-Market</div></div><p class="team__name">Elle Zhou</p></div>
       </div>
 
       <h2 class="team__heading fade-up">Web Design Team</h2>
       <div class="team__row">
-        <div class="team-member fade-up" data-delay="1"><img src="Assets/headshot emily.png" alt="Emily Milegan" class="team__photo"><p class="team__name">Emily Milegan</p></div>
-        <div class="team-member fade-up" data-delay="2"><img src="Assets/headshot nadine.png" alt="Nadine McMahon" class="team__photo"><p class="team__name">Nadine McMahon</p></div>
-        <div class="team-member fade-up" data-delay="3"><img src="Assets/headshot mark.png" alt="Mark Hou" class="team__photo"><p class="team__name">Mark Hou</p></div>
-        <div class="team-member fade-up" data-delay="4"><img src="Assets/headshot catherine.png" alt="Catherine Wang" class="team__photo"><p class="team__name">Catherine Wang</p></div>
-        <div class="team-member fade-up" data-delay="5"><img src="Assets/headshot zeinab.png" alt="Zeinab Drameh" class="team__photo"><p class="team__name">Zeinab Drameh</p></div>
+        <div class="team-member fade-up" data-delay="1"><div class="team__photo-wrap"><img src="Assets/headshot emily.png" alt="Emily Milegan" class="team__photo"><div class="team__role">UI Design &amp; Layout</div></div><p class="team__name">Emily Milegan</p></div>
+        <div class="team-member fade-up" data-delay="2"><div class="team__photo-wrap"><img src="Assets/headshot nadine.png" alt="Nadine McMahon" class="team__photo"><div class="team__role">Web Development &amp; Interactions</div></div><p class="team__name">Nadine McMahon</p></div>
+        <div class="team-member fade-up" data-delay="3"><div class="team__photo-wrap"><img src="Assets/headshot mark.png" alt="Mark Hou" class="team__photo"><div class="team__role">Visual Design &amp; Branding</div></div><p class="team__name">Mark Hou</p></div>
+        <div class="team-member fade-up" data-delay="4"><div class="team__photo-wrap"><img src="Assets/headshot catherine.png" alt="Catherine Wang" class="team__photo"><div class="team__role">Content Strategy &amp; Copywriting</div></div><p class="team__name">Catherine Wang</p></div>
+        <div class="team-member fade-up" data-delay="5"><div class="team__photo-wrap"><img src="Assets/headshot zeinab.png" alt="Zeinab Drameh" class="team__photo"><div class="team__role">UX Research &amp; Accessibility</div></div><p class="team__name">Zeinab Drameh</p></div>
       </div>
 
     </div>
@@ -415,27 +431,45 @@
 
     // ── Business model accordion ─────────────────────────────
     (function () {
-      function openItem(item) {
+      // Map accordion index (0-based) to right-panel id (null = default)
+      const panelMap = ['panel-competitive', null, null, 'panel-proforma'];
+
+      function showPanel(id) {
+        document.querySelectorAll('.business__panel').forEach(function (p) {
+          p.classList.remove('is-active');
+        });
+        const target = id ? document.getElementById(id) : document.querySelector('.business__panel--default');
+        if (target) target.classList.add('is-active');
+      }
+
+      function openItem(item, index) {
         const body = item.querySelector('.accordion__body');
         item.classList.add('is-open');
         item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'true');
         body.style.height = body.scrollHeight + 'px';
+        showPanel(panelMap[index]);
       }
       function closeItem(item) {
         const body = item.querySelector('.accordion__body');
-        body.style.height = body.scrollHeight + 'px'; // set explicit before collapsing
-        requestAnimationFrame(function () {
-          body.style.height = '0';
-        });
+        // Set explicit px height first so CSS transition has something to animate from
+        body.style.height = body.scrollHeight + 'px';
+        // Force reflow so the browser registers the new value before collapsing
+        body.offsetHeight; // eslint-disable-line no-unused-expressions
+        body.style.height = '0';
         item.classList.remove('is-open');
         item.querySelector('.accordion__trigger').setAttribute('aria-expanded', 'false');
       }
-      document.querySelectorAll('.accordion__trigger').forEach(function (trigger) {
-        trigger.addEventListener('click', function () {
-          const item = trigger.closest('.accordion__item');
-          const isOpen = item.classList.contains('is-open');
-          document.querySelectorAll('.accordion__item.is-open').forEach(closeItem);
-          if (!isOpen) openItem(item);
+
+      const items = document.querySelectorAll('.accordion__item');
+      items.forEach(function (trigger_item, index) {
+        trigger_item.querySelector('.accordion__trigger').addEventListener('click', function () {
+          const isOpen = trigger_item.classList.contains('is-open');
+          items.forEach(closeItem);
+          if (!isOpen) {
+            openItem(trigger_item, index);
+          } else {
+            showPanel(null); // back to default
+          }
         });
       });
     })();
@@ -446,7 +480,8 @@
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
+          } else {
+            entry.target.classList.remove('visible');
           }
         });
       }, { threshold: 0.12 });

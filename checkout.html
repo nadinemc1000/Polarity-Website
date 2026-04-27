@@ -282,6 +282,133 @@
       line-height: 1.7;
     }
 
+    /* ── Step indicator ── */
+    .step-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .step-indicator__item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .step-indicator__num {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      border: 2px solid var(--color-gray-light);
+      color: var(--color-gray-mid);
+      background: transparent;
+      transition: background 0.25s, border-color 0.25s, color 0.25s;
+    }
+
+    .step-indicator__label {
+      font-family: var(--font-display);
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-gray-mid);
+      transition: color 0.25s;
+      white-space: nowrap;
+    }
+
+    .step-indicator__line {
+      flex: 1;
+      height: 1.5px;
+      background: var(--color-gray-light);
+      margin: 0 10px;
+      margin-bottom: 22px; /* offset to align with circles, not labels */
+      transition: background 0.25s;
+    }
+
+    /* Active step */
+    .step-indicator__item.is-active .step-indicator__num {
+      background: var(--color-black);
+      border-color: var(--color-black);
+      color: var(--color-cream);
+    }
+
+    .step-indicator__item.is-active .step-indicator__label {
+      color: var(--color-black);
+    }
+
+    /* Completed step */
+    .step-indicator__item.is-done .step-indicator__num {
+      background: var(--color-red);
+      border-color: var(--color-red);
+      color: transparent; /* hide number, show checkmark only */
+      font-size: 0;
+    }
+
+    .step-indicator__item.is-done .step-indicator__num::after {
+      content: '✓';
+      font-size: 0.82rem;
+      color: #fff;
+    }
+
+    .step-indicator__item.is-done .step-indicator__label {
+      color: var(--color-gray-dark);
+    }
+
+    .step-indicator__line.is-done {
+      background: var(--color-red);
+    }
+
+    /* ── Step panels ── */
+    .checkout__step[hidden] { display: none; }
+    .checkout__step { animation: stepIn 0.3s ease; }
+
+    @keyframes stepIn {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* ── Step nav buttons ── */
+    .step-nav {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .step-nav .btn {
+      padding: 12px 28px;
+      font-size: 0.82rem;
+    }
+
+    .step-nav .step-back {
+      background: transparent;
+      border: 1.5px solid var(--color-gray-light);
+      color: var(--color-gray-dark);
+      border-radius: 0;
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding: 12px 22px;
+      cursor: pointer;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .step-nav .step-back:hover {
+      border-color: var(--color-black);
+      color: var(--color-black);
+    }
+
     /* ── Mobile ── */
     @media (max-width: 768px) {
       .checkout__inner {
@@ -291,6 +418,10 @@
         position: static;
         order: -1;
       }
+      /* Hide the sidebar Place Order button — it moves to below the form */
+      .summary__cta { display: none; }
+      /* Show the inline Place Order button at the end of step 4 */
+      .step-nav__place-order { display: block !important; }
       .form-row--thirds {
         grid-template-columns: 1fr 1fr;
       }
@@ -299,6 +430,15 @@
     @media (max-width: 480px) {
       .form-row { grid-template-columns: 1fr; }
       .form-row--thirds { grid-template-columns: 1fr; }
+    }
+
+    /* Inline place-order button — visible only on mobile */
+    .step-nav__place-order {
+      display: none;
+      width: 100%;
+      padding: 14px;
+      font-size: 0.9rem;
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -325,10 +465,34 @@
   <main class="checkout">
     <div class="container checkout__inner">
 
-      <!-- ── Left: form ── -->
+      <!-- ── Left: step-by-step form ── -->
       <div class="checkout__form-col">
 
-        <div class="checkout__section">
+        <!-- Step indicator -->
+        <div class="step-indicator">
+          <div class="step-indicator__item is-active" data-step="0">
+            <span class="step-indicator__num">1</span>
+            <span class="step-indicator__label">Contact</span>
+          </div>
+          <div class="step-indicator__line"></div>
+          <div class="step-indicator__item" data-step="1">
+            <span class="step-indicator__num">2</span>
+            <span class="step-indicator__label">Shipping</span>
+          </div>
+          <div class="step-indicator__line"></div>
+          <div class="step-indicator__item" data-step="2">
+            <span class="step-indicator__num">3</span>
+            <span class="step-indicator__label">Color</span>
+          </div>
+          <div class="step-indicator__line"></div>
+          <div class="step-indicator__item" data-step="3">
+            <span class="step-indicator__num">4</span>
+            <span class="step-indicator__label">Payment</span>
+          </div>
+        </div>
+
+        <!-- Step 1: Contact -->
+        <div class="checkout__step" id="step-0">
           <h2 class="checkout__section-title">Contact Information</h2>
           <div class="form-row">
             <div class="form-group">
@@ -352,9 +516,13 @@
               <input class="form-input" id="phone" type="tel" placeholder="+1 (555) 000-0000" autocomplete="tel">
             </div>
           </div>
+          <div class="step-nav">
+            <button class="btn btn--red step-next">Continue &rarr;</button>
+          </div>
         </div>
 
-        <div class="checkout__section">
+        <!-- Step 2: Shipping -->
+        <div class="checkout__step" id="step-1" hidden>
           <h2 class="checkout__section-title">Shipping Address</h2>
           <div class="form-row form-row--full">
             <div class="form-group">
@@ -382,10 +550,15 @@
               <input class="form-input" id="zip" type="text" placeholder="10001" autocomplete="postal-code">
             </div>
           </div>
+          <div class="step-nav">
+            <button class="btn step-back">← Back</button>
+            <button class="btn btn--red step-next">Continue &rarr;</button>
+          </div>
         </div>
 
-        <div class="checkout__section">
-          <h2 class="checkout__section-title">Color</h2>
+        <!-- Step 3: Color -->
+        <div class="checkout__step" id="step-2" hidden>
+          <h2 class="checkout__section-title">Choose Your Color</h2>
           <div class="checkout__swatches">
             <div class="checkout__swatch is-selected" data-color="Cream Beige">
               <div class="checkout__swatch-circle checkout__swatch-circle--cream"></div>
@@ -400,9 +573,14 @@
               <span class="checkout__swatch-label">Heather<br>Smoke</span>
             </div>
           </div>
+          <div class="step-nav">
+            <button class="btn step-back">← Back</button>
+            <button class="btn btn--red step-next">Continue &rarr;</button>
+          </div>
         </div>
 
-        <div class="checkout__section">
+        <!-- Step 4: Payment -->
+        <div class="checkout__step" id="step-3" hidden>
           <h2 class="checkout__section-title">Payment</h2>
           <div class="card-icons">
             <span class="card-icon">VISA</span>
@@ -430,6 +608,10 @@
               <input class="form-input" id="cvv" type="text" placeholder="123" maxlength="4" autocomplete="cc-csc">
             </div>
           </div>
+          <div class="step-nav">
+            <button class="btn step-back">← Back</button>
+            <button class="btn btn--red step-nav__place-order" id="place-order-inline">Place Order &rarr;</button>
+          </div>
         </div>
 
       </div>
@@ -449,7 +631,7 @@
         </div>
 
         <div class="summary__line">
-          <span>Unit Price</span>
+          <span>Unit Price (per couch)</span>
           <strong>$X,000</strong>
         </div>
         <div class="summary__line">
@@ -527,25 +709,81 @@
       document.getElementById('summary-total').textContent = '$' + (250 * qty).toLocaleString();
     })();
 
-    // ── Place order ──────────────────────────────────────────
-    document.getElementById('place-order-btn').addEventListener('click', function () {
-      const required = ['first-name', 'last-name', 'email', 'address', 'city', 'state', 'zip', 'card-number', 'expiry', 'cvv'];
-      let valid = true;
-      required.forEach(function (id) {
-        const el = document.getElementById(id);
-        if (!el.value.trim()) {
-          el.style.borderColor = 'var(--color-red)';
-          valid = false;
-        } else {
-          el.style.borderColor = '';
+    // ── Step wizard ─────────────────────────────────────────
+    (function () {
+      const steps      = Array.from(document.querySelectorAll('.checkout__step'));
+      const indicators = Array.from(document.querySelectorAll('.step-indicator__item'));
+      const lines      = Array.from(document.querySelectorAll('.step-indicator__line'));
+      let current = 0;
+
+      // Required fields per step (empty string = no validation on that step)
+      const stepRequired = [
+        ['first-name', 'last-name', 'email'],   // Step 1
+        ['address', 'city', 'state', 'zip'],     // Step 2
+        [],                                       // Step 3 — color (always valid)
+        ['card-number', 'expiry', 'cvv'],        // Step 4
+      ];
+
+      function goTo(index) {
+        // Hide current, show target
+        steps[current].hidden = true;
+        steps[index].removeAttribute('hidden');
+
+        // Update indicators
+        indicators.forEach(function (ind, i) {
+          ind.classList.remove('is-active', 'is-done');
+          if (i < index)      ind.classList.add('is-done');
+          else if (i === index) ind.classList.add('is-active');
+        });
+
+        // Update connector lines
+        lines.forEach(function (line, i) {
+          line.classList.toggle('is-done', i < index);
+        });
+
+        current = index;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      function validateStep(index) {
+        let ok = true;
+        stepRequired[index].forEach(function (id) {
+          const el = document.getElementById(id);
+          if (!el || !el.value.trim()) {
+            if (el) el.style.borderColor = 'var(--color-red)';
+            ok = false;
+          } else {
+            el.style.borderColor = '';
+          }
+        });
+        return ok;
+      }
+
+      // Delegate Next / Back clicks
+      document.querySelector('.checkout__form-col').addEventListener('click', function (e) {
+        if (e.target.classList.contains('step-next')) {
+          if (!validateStep(current)) return;
+          if (current < steps.length - 1) goTo(current + 1);
+        }
+        if (e.target.classList.contains('step-back')) {
+          if (current > 0) goTo(current - 1);
         }
       });
-      if (!valid) return;
 
-      document.querySelector('.checkout__inner').style.display = 'none';
-      document.getElementById('checkout-confirm').style.display = 'block';
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+      function placeOrder() {
+        for (let i = 0; i < steps.length; i++) {
+          if (!validateStep(i)) { goTo(i); return; }
+        }
+        document.querySelector('.checkout__inner').style.display = 'none';
+        document.getElementById('checkout-confirm').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // Sidebar button (desktop)
+      document.getElementById('place-order-btn').addEventListener('click', placeOrder);
+      // Inline button (mobile, step 4)
+      document.getElementById('place-order-inline').addEventListener('click', placeOrder);
+    })();
   </script>
 
 </body>
