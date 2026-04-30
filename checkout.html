@@ -173,12 +173,14 @@
     }
 
     .summary__img {
-      width: 80px;
-      height: 80px;
-      object-fit: cover;
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      object-position: center;
       border-radius: 12px;
       background: var(--color-cream);
       flex-shrink: 0;
+      padding: 6px;
     }
 
     .summary__product-info { flex: 1; }
@@ -564,9 +566,9 @@
               <div class="checkout__swatch-circle checkout__swatch-circle--cream"></div>
               <span class="checkout__swatch-label">Cream<br>Beige</span>
             </div>
-            <div class="checkout__swatch" data-color="Custom Colors">
+            <div class="checkout__swatch" data-color="Midday Gray">
               <div class="checkout__swatch-circle checkout__swatch-circle--sage"></div>
-              <span class="checkout__swatch-label">Custom<br>Colors</span>
+              <span class="checkout__swatch-label">Midday<br>Gray</span>
             </div>
             <div class="checkout__swatch" data-color="Heather Smoke">
               <div class="checkout__swatch-circle checkout__swatch-circle--dark"></div>
@@ -621,7 +623,7 @@
         <p class="summary__title">Order Summary</p>
 
         <div class="summary__product">
-          <img src="Assets/Overhead Couch Photo.png" alt="Polarity couch" class="summary__img">
+          <img src="Assets/Overhead Couch Photo (cream beige).png" alt="Polarity couch" class="summary__img" id="summary-img">
           <div class="summary__product-info">
             <p class="summary__product-name">Polarity</p>
             <p class="summary__product-sub">Modular Couch</p>
@@ -677,14 +679,22 @@
     })();
 
     // ── Swatch selector ─────────────────────────────────────
+    const colorImgMap = {
+      'Cream Beige':   'Assets/Overhead Couch Photo (cream beige).png',
+      'Midday Gray':   'Assets/midday gray couch.png',
+      'Heather Smoke': 'Assets/heather smoke couch.png',
+    };
     (function () {
-      const swatches = document.querySelectorAll('.checkout__swatch');
+      const swatches    = document.querySelectorAll('.checkout__swatch');
       const summaryColor = document.getElementById('summary-color');
+      const summaryImg   = document.getElementById('summary-img');
       swatches.forEach(function (s) {
         s.addEventListener('click', function () {
           swatches.forEach(function (x) { x.classList.remove('is-selected'); });
           s.classList.add('is-selected');
           summaryColor.textContent = s.dataset.color;
+          summaryImg.src = colorImgMap[s.dataset.color] || summaryImg.src;
+          localStorage.setItem('polarityColor', s.dataset.color);
         });
       });
     })();
@@ -701,12 +711,21 @@
       this.value = v;
     });
 
-    // ── Quantity sync from main page (localStorage) ──────────
+    // ── Quantity + color sync from main page (localStorage) ──
     (function () {
-      const qty = parseInt(localStorage.getItem('polarityQty')) || 1;
+      const qty   = parseInt(localStorage.getItem('polarityQty')) || 1;
+      const color = localStorage.getItem('polarityColor') || 'Cream Beige';
       document.getElementById('summary-qty').textContent = '×' + qty;
       document.getElementById('summary-deposit').textContent = '$' + (250 * qty).toLocaleString();
       document.getElementById('summary-total').textContent = '$' + (250 * qty).toLocaleString();
+      // Pre-select the matching swatch
+      const summaryColor = document.getElementById('summary-color');
+      const summaryImg   = document.getElementById('summary-img');
+      if (summaryColor) summaryColor.textContent = color;
+      if (summaryImg && colorImgMap[color]) summaryImg.src = colorImgMap[color];
+      document.querySelectorAll('.checkout__swatch').forEach(function (s) {
+        s.classList.toggle('is-selected', s.dataset.color === color);
+      });
     })();
 
     // ── Step wizard ─────────────────────────────────────────

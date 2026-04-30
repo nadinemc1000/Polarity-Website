@@ -115,7 +115,7 @@
   <section class="shop" id="shop">
     <div class="container shop__inner">
       <div class="shop__img fade-up">
-        <img src="Assets/Overhead Couch Photo.png" alt="Polarity couch overhead view" class="shop__photo">
+        <img src="Assets/Overhead Couch Photo (cream beige).png" alt="Polarity couch overhead view" class="shop__photo" id="shop-couch-img">
       </div>
       <div class="shop__content fade-up" data-delay="1">
         <h2 class="shop__heading">Shop Now</h2>
@@ -125,15 +125,15 @@
           Due Today:&ensp;<strong>$250</strong>
         </p>
         <div class="shop__swatches">
-          <div class="swatch">
+          <div class="swatch is-selected" data-color="Cream Beige" data-img="Assets/Overhead Couch Photo (cream beige).png">
             <div class="swatch__circle swatch__circle--cream"></div>
             <span class="swatch__label">Cream<br>Beige</span>
           </div>
-          <div class="swatch">
+          <div class="swatch" data-color="Midday Gray" data-img="Assets/midday gray couch.png">
             <div class="swatch__circle swatch__circle--sage"></div>
-            <span class="swatch__label">Custom<br>Colors</span>
+            <span class="swatch__label">Midday<br>Gray</span>
           </div>
-          <div class="swatch">
+          <div class="swatch" data-color="Heather Smoke" data-img="Assets/heather smoke couch.png">
             <div class="swatch__circle swatch__circle--dark"></div>
             <span class="swatch__label">Heather<br>Smoke</span>
           </div>
@@ -281,7 +281,7 @@
     <div class="container">
       <h2 class="bts-preview__heading fade-up">BTS</h2>
       <p class="bts-preview__sub fade-up" data-delay="1">Behind the scenes — design, prototyping, and the making of Polarity.</p>
-      <div class="bts-preview__grid">
+      <div class="bts-preview__grid" id="bts-grid">
         <div class="bts-preview__cell bts-preview__cell--wide" aria-label="BTS photo 1">
           <img src="Assets/BTS 2.png" alt="BTS photo 1" class="bts-preview__img">
           <div class="bts-preview__caption">Design &amp; Concept</div>
@@ -302,6 +302,13 @@
           <img src="Assets/BTS 5.png" alt="BTS photo 5" class="bts-preview__img">
           <div class="bts-preview__caption">Assembly</div>
         </div>
+      </div>
+
+      <!-- Mobile carousel controls (hidden on desktop via CSS) -->
+      <div class="bts-carousel__controls" id="bts-controls" style="display:none">
+        <button class="bts-carousel__btn" id="bts-prev" aria-label="Previous">&#8592;</button>
+        <div class="bts-carousel__dots" id="bts-dots"></div>
+        <button class="bts-carousel__btn" id="bts-next" aria-label="Next">&#8594;</button>
       </div>
     </div>
   </section>
@@ -407,6 +414,22 @@
       onScroll(); // run once on load
     })();
 
+    // ── Color swatch switcher ────────────────────────────────
+    (function () {
+      const swatches  = document.querySelectorAll('.shop__swatches .swatch');
+      const couchImg  = document.getElementById('shop-couch-img');
+      swatches.forEach(function (s) {
+        s.addEventListener('click', function () {
+          swatches.forEach(function (x) { x.classList.remove('is-selected'); });
+          s.classList.add('is-selected');
+          couchImg.src = s.dataset.img;
+          couchImg.alt = s.dataset.color + ' Polarity couch';
+          // Sync color to localStorage so checkout shows the right one
+          localStorage.setItem('polarityColor', s.dataset.color);
+        });
+      });
+    })();
+
     // ── Quantity selector ────────────────────────────────────
     (function () {
       const input = document.getElementById('qty-input');
@@ -472,6 +495,80 @@
           }
         });
       });
+    })();
+
+    // ── BTS mobile carousel ──────────────────────────────────
+    (function () {
+      const MQ       = window.matchMedia('(max-width: 600px)');
+      const grid     = document.getElementById('bts-grid');
+      const controls = document.getElementById('bts-controls');
+      const dotsWrap = document.getElementById('bts-dots');
+      const cells    = Array.from(grid.querySelectorAll('.bts-preview__cell'));
+      const total    = cells.length;
+      let current    = 0;
+      let touchStartX = 0;
+      let initialized = false;
+
+      function buildDots() {
+        dotsWrap.innerHTML = '';
+        cells.forEach(function (_, i) {
+          const d = document.createElement('button');
+          d.className = 'bts-carousel__dot' + (i === 0 ? ' is-active' : '');
+          d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+          d.addEventListener('click', function () { goTo(i); });
+          dotsWrap.appendChild(d);
+        });
+      }
+
+      function updateDots() {
+        dotsWrap.querySelectorAll('.bts-carousel__dot').forEach(function (d, i) {
+          d.classList.toggle('is-active', i === current);
+        });
+      }
+
+      function goTo(index) {
+        current = (index + total) % total;
+        cells.forEach(function (cell) {
+          cell.style.setProperty('--slide', current);
+        });
+        updateDots();
+      }
+
+      function initCarousel() {
+        if (initialized) return;
+        initialized = true;
+        controls.style.display = 'flex';
+        buildDots();
+        goTo(0);
+
+        document.getElementById('bts-prev').addEventListener('click', function () { goTo(current - 1); });
+        document.getElementById('bts-next').addEventListener('click', function () { goTo(current + 1); });
+
+        // Touch swipe support
+        grid.addEventListener('touchstart', function (e) {
+          touchStartX = e.touches[0].clientX;
+        }, { passive: true });
+        grid.addEventListener('touchend', function (e) {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          if (Math.abs(dx) > 40) goTo(dx < 0 ? current + 1 : current - 1);
+        }, { passive: true });
+      }
+
+      function destroyCarousel() {
+        if (!initialized) return;
+        initialized = false;
+        controls.style.display = 'none';
+        cells.forEach(function (cell) { cell.style.removeProperty('--slide'); });
+        current = 0;
+      }
+
+      function check() {
+        if (MQ.matches) initCarousel();
+        else destroyCarousel();
+      }
+
+      check();
+      MQ.addEventListener('change', check);
     })();
 
     // ── Scroll entrance animations ───────────────────────────
