@@ -308,11 +308,65 @@ h1, h2, h3 {
   padding: 18px var(--gutter) 24px;
 }
 
+/* Preorder button — overlaid on hero image */
+.hero__preorder-wrap {
+  position: absolute;
+  top: 206px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.hero__preorder-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  background: var(--color-black);
+  border-radius: 100px;
+  border: 1.5px solid var(--color-cream);
+  text-decoration: none;
+  overflow: hidden;
+  transition: opacity 0.2s;
+}
+
+.hero__preorder-btn:hover { opacity: 0.82; }
+
+.hero__preorder-label {
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-cream);
+  padding: 16px 28px 16px 32px;
+  white-space: nowrap;
+}
+
+.hero__preorder-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(226, 228, 215, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-cream);
+  font-size: 1.1rem;
+  margin: 6px 6px 6px 0;
+  flex-shrink: 0;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.hero__preorder-btn:hover .hero__preorder-icon {
+  background: rgba(226, 228, 215, 0.12);
+  border-color: rgba(226, 228, 215, 0.6);
+}
+
 /* Full-width couch photo */
 .hero__img-wrap {
   width: 100%;
   overflow: visible;
-  margin-top: -40px;
+  margin-top: -60px;
   position: relative;
   z-index: 1;
 }
@@ -329,7 +383,7 @@ h1, h2, h3 {
    ============================================================ */
 .vision {
   background: var(--color-red);
-  padding: 72px var(--gutter) 80px;
+  padding: 72px var(--gutter) 32px;
   text-align: center;
   position: relative;
   z-index: 2;
@@ -358,6 +412,14 @@ h1, h2, h3 {
   line-height: 1.8;
   color: var(--color-cream);
   text-align: center;
+}
+
+.vision__modes-img {
+  display: block;
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  margin: 24px auto 0;
 }
 
 /* ============================================================
@@ -453,13 +515,13 @@ h1, h2, h3 {
 .feature__backrest-img {
   position: absolute;
   bottom: 0;
-  left: -10%;
-  width: 120%;
-  max-width: none;   /* override global img { max-width: 100% } reset */
+  left: -20%;
+  width: 145%;
+  max-width: none;
   height: auto;
   object-fit: contain;
   object-position: bottom center;
-  transform: translateY(-5%);
+  transform: translateY(-8%);
   pointer-events: none;
 }
 
@@ -697,7 +759,7 @@ h1, h2, h3 {
 
 .qty-input:focus { outline: none; }
 
-.shop__btn { align-self: center; }
+.shop__preorder-btn { align-self: center; text-decoration: none; }
 
 /* ============================================================
    BUSINESS MODEL
@@ -1087,6 +1149,179 @@ img.team__photo {
   letter-spacing: 0.04em;
   color: var(--color-cream);
   text-align: center;
+}
+
+/* ============================================================
+   NEWSLETTER POPUP
+   ============================================================ */
+.nl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 15, 0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  opacity: 0;
+  animation: nlFadeIn 0.5s 1.2s ease forwards;
+}
+
+@keyframes nlFadeIn {
+  to { opacity: 1; }
+}
+
+.nl-overlay.nl-hidden {
+  display: none;
+}
+
+.nl-modal {
+  background: var(--color-red);
+  border-radius: 16px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  max-width: 980px;
+  width: 100%;
+  position: relative;
+  box-shadow: 0 32px 80px rgba(0,0,0,0.35);
+  transform: translateY(20px);
+  animation: nlSlideUp 0.5s 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes nlSlideUp {
+  to { transform: translateY(0); }
+}
+
+/* Close button */
+.nl-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.75);
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 4px 6px;
+  transition: color 0.2s;
+  z-index: 2;
+}
+.nl-close:hover { color: #fff; }
+
+/* Left image panel */
+.nl-img {
+  background: var(--color-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  min-height: 380px;
+}
+
+.nl-couch {
+  width: 90%;
+  max-width: 360px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 50%;
+  aspect-ratio: 1;
+  object-position: center;
+}
+
+/* Right content panel */
+.nl-body {
+  padding: 44px 48px 44px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+}
+
+.nl-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #fff;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.nl-heading__sub {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1em; /* same as parent */
+}
+
+.nl-desc {
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.65;
+  margin: 4px 0 6px;
+}
+
+.nl-input {
+  height: 46px;
+  padding: 0 16px;
+  border: 1.5px solid rgba(255,255,255,0.55);
+  border-radius: 4px;
+  background: transparent;
+  color: #fff;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  transition: border-color 0.2s;
+}
+.nl-input::placeholder { color: rgba(255,255,255,0.55); }
+.nl-input:focus { outline: none; border-color: #fff; }
+
+.nl-actions {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.nl-btn--yes { flex: 1; }
+.nl-btn--no  { flex: 1; }
+
+.nl-btn {
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 13px 20px;
+  border-radius: 0;
+  transition: opacity 0.2s;
+}
+.nl-btn:hover { opacity: 0.85; }
+
+.nl-btn--yes {
+  background: var(--color-black);
+  color: var(--color-cream);
+}
+
+.nl-btn--no {
+  background: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.7);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .nl-modal {
+    grid-template-columns: 1fr;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .nl-img { min-height: 200px; padding: 28px; }
+  .nl-couch { max-width: 180px; }
+  .nl-body { padding: 28px 24px 36px; }
 }
 
 /* ============================================================

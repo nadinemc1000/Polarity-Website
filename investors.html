@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Investors — Polarity</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* ── Investors page ── */
+    .investors {
+      background: var(--color-cream);
+      min-height: 100vh;
+      padding: calc(var(--nav-height) + 64px) 0 100px;
+    }
+
+    /* ── Hero heading ── */
+    .inv__hero {
+      margin-bottom: 56px;
+    }
+
+    .inv__heading {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--color-black);
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+
+    .inv__intro {
+      font-size: 0.95rem;
+      color: var(--color-gray-dark);
+      line-height: 1.75;
+      max-width: 520px;
+    }
+
+    /* ── Stat tiles ── */
+    .inv__stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 72px;
+    }
+
+    .inv__stat {
+      background: var(--color-red);
+      border-radius: 14px;
+      padding: 28px 20px 22px;
+    }
+
+    .inv__stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .inv__stat-label {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Section title ── */
+    .inv__section-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-black);
+      margin-bottom: 6px;
+    }
+
+    .inv__section-sub {
+      font-size: 0.85rem;
+      color: var(--color-gray-dark);
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+
+    /* ── Competitive matrix image ── */
+    .inv__matrix {
+      margin-bottom: 72px;
+    }
+
+    .inv__matrix-img {
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+      display: block;
+    }
+
+    /* ── Investment & Revenue cards ── */
+    .inv__revenue {
+      margin-bottom: 72px;
+    }
+
+    .inv__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: start;
+    }
+
+    .inv__card {
+      background: var(--color-gray-light);
+      border-radius: 16px;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    /* Accordion trigger row */
+    .inv__card-trigger {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 26px 24px;
+      gap: 12px;
+      text-align: left;
+    }
+
+    .inv__card-title {
+      font-family: var(--font-display);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-black);
+      margin: 0;
+    }
+
+    .inv__card-icon {
+      font-size: 1.2rem;
+      font-weight: 300;
+      color: var(--color-black);
+      line-height: 1;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+
+    .inv__card.is-open .inv__card-icon {
+      transform: rotate(45deg);
+    }
+
+    /* Collapsible body */
+    .inv__card-body {
+      height: 0;
+      overflow: hidden;
+      transition: height 0.35s ease;
+    }
+
+    .inv__card-body-inner {
+      padding: 0 24px 28px;
+    }
+
+    .inv__card ul {
+      list-style: disc;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 0;
+    }
+
+    .inv__card li {
+      font-size: 0.85rem;
+      color: var(--color-gray-dark);
+      line-height: 1.55;
+    }
+
+    /* ── User persona + pro forma grid ── */
+    .inv__bottom {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .inv__persona-img {
+      background: var(--color-red);
+      border-radius: 16px;
+      min-height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .inv__persona-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 16px;
+      display: block;
+    }
+
+    .inv__card--persona {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: right;
+      padding: 32px;
+    }
+
+    .inv__card--persona .inv__card-title {
+      text-align: right;
+      color: var(--color-black);
+    }
+
+    .inv__card--persona p {
+      font-size: 0.88rem;
+      color: var(--color-gray-dark);
+      line-height: 1.7;
+      text-align: right;
+    }
+
+    .inv__proforma-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .inv__card--proforma {
+      grid-column: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 32px;
+    }
+
+    .inv__card--proforma .inv__card-title {
+      color: var(--color-black);
+    }
+
+    .inv__card--proforma p {
+      font-size: 0.88rem;
+      color: var(--color-gray-dark);
+      line-height: 1.7;
+    }
+
+    .inv__proforma-embed {
+      background: var(--color-gray-light);
+      border-radius: 16px;
+      overflow: hidden;
+      min-height: 260px;
+      display: flex;
+      align-items: stretch;
+    }
+
+    .inv__proforma-embed iframe {
+      width: 100%;
+      border: none;
+      min-height: 260px;
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 900px) {
+      .inv__stats { grid-template-columns: repeat(2, 1fr); }
+      .inv__cards { grid-template-columns: 1fr; }
+      .inv__bottom { grid-template-columns: 1fr; }
+      .inv__proforma-row { grid-template-columns: 1fr; }
+      .inv__card--persona { text-align: left; }
+      .inv__card--persona .inv__card-title { text-align: left; }
+      .inv__card--persona p { text-align: left; }
+    }
+
+    @media (max-width: 540px) {
+      .inv__stats { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav nav--primary">
+    <div class="container nav__inner">
+      <a href="index.html" aria-label="Polarity home">
+        <img src="Assets/fixed logo.png" alt="Polarity" class="nav__logo-img">
+      </a>
+      <button class="nav__hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav__links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#vision">Vision</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="investors.html" class="active">Investors</a></li>
+      </ul>
+      <a href="checkout.html" class="nav__cart" aria-label="Checkout">
+        <img src="Assets/Cart--Streamline-Ionic-Filled.png" alt="Cart" class="nav__cart-img">
+      </a>
+    </div>
+  </nav>
+
+  <main class="investors">
+    <div class="container">
+
+      <!-- Hero heading -->
+      <div class="inv__hero fade-up">
+        <h1 class="inv__heading">For Investors</h1>
+        <p class="inv__intro">Polarity is redefining the modular furniture market — blending high design sensibility with social-first functionality. Here's why it's a compelling opportunity.</p>
+      </div>
+
+      <!-- Stat tiles -->
+      <div class="inv__stats">
+        <div class="inv__stat fade-up" data-delay="1">
+          <p class="inv__stat-num">8X</p>
+          <p class="inv__stat-label">Projected ROI</p>
+        </div>
+        <div class="inv__stat fade-up" data-delay="2">
+          <p class="inv__stat-num">46%</p>
+          <p class="inv__stat-label">Gross Margin Target</p>
+        </div>
+        <div class="inv__stat fade-up" data-delay="3">
+          <p class="inv__stat-num">13M</p>
+          <p class="inv__stat-label">Addressable Market</p>
+        </div>
+        <div class="inv__stat fade-up" data-delay="4">
+          <p class="inv__stat-num">4</p>
+          <p class="inv__stat-label">Revenue Streams</p>
+        </div>
+      </div>
+
+      <!-- Competitive Matrix -->
+      <div class="inv__matrix fade-up">
+        <p class="inv__section-title">Competitive Matrix</p>
+        <p class="inv__section-sub">Spatial Adaptability &amp; Social Utility</p>
+        <img src="Assets/Competitive Analysis chart 1.png" alt="Competitive Analysis Chart" class="inv__matrix-img">
+      </div>
+
+      <!-- Investment & Revenue Model -->
+      <div class="inv__revenue">
+        <p class="inv__section-title fade-up">Investment &amp; Revenue Model</p>
+        <div class="inv__cards">
+          <div class="inv__card fade-up" data-delay="1">
+            <button class="inv__card-trigger" aria-expanded="false">
+              <span class="inv__card-title">Revenue Streams</span>
+              <span class="inv__card-icon">+</span>
+            </button>
+            <div class="inv__card-body">
+              <div class="inv__card-body-inner">
+                <ul>
+                  <li>Direct-to-consumer sales (primary)</li>
+                  <li>Modular add-ons and expansion kits</li>
+                  <li>Premium fabric/material upgrades</li>
+                  <li>Limited edition or designer collaborations</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="inv__card fade-up" data-delay="2">
+            <button class="inv__card-trigger" aria-expanded="false">
+              <span class="inv__card-title">Pricing Strategy</span>
+              <span class="inv__card-icon">+</span>
+            </button>
+            <div class="inv__card-body">
+              <div class="inv__card-body-inner">
+                <ul>
+                  <li>Positioned in the upper mid-market</li>
+                  <li>More accessible than luxury icons, but more premium than mass modular brands</li>
+                  <li>Designed for long-term value vs. disposable furniture</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="inv__card fade-up" data-delay="3">
+            <button class="inv__card-trigger" aria-expanded="false">
+              <span class="inv__card-title">Investment Focus</span>
+              <span class="inv__card-icon">+</span>
+            </button>
+            <div class="inv__card-body">
+              <div class="inv__card-body-inner">
+                <ul>
+                  <li>Product development &amp; prototyping</li>
+                  <li>Manufacturing partnerships</li>
+                  <li>Brand + digital experience</li>
+                  <li>Inventory &amp; logistics scaling</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Persona -->
+      <div class="inv__bottom fade-up">
+        <div class="inv__persona-img">
+          <img src="Assets/new hero image with people.png" alt="Polarity user persona">
+        </div>
+        <div class="inv__card inv__card--persona">
+          <p class="inv__card-title">User Persona</p>
+          <p>Urban professionals and design-conscious renters and homeowners who host frequently. They value adaptability, aesthetics, and furniture that grows with their lives — and are willing to invest in quality that lasts.</p>
+        </div>
+      </div>
+
+      <!-- Financial Pro Forma -->
+      <div class="inv__proforma-row fade-up">
+        <div class="inv__card inv__card--proforma">
+          <p class="inv__card-title">Financial Pro Forma</p>
+          <p>Our five-year projection shows a clear path to profitability driven by DTC sales, modular add-on revenue, and strategic retail partnerships. Deposit-based preorders reduce upfront inventory risk.</p>
+        </div>
+        <div class="inv__proforma-embed">
+          <iframe src="Polarity Financial Pro Forma/Sheet1.html" title="Financial Pro Forma"></iframe>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <script>
+    // ── Hamburger ──────────────────────────────────────────────
+    (function () {
+      const hamburger = document.querySelector('.nav__hamburger');
+      const nav = document.querySelector('.nav');
+      hamburger.addEventListener('click', function () {
+        const isOpen = nav.classList.toggle('nav--open');
+        hamburger.setAttribute('aria-expanded', isOpen);
+      });
+    })();
+
+    // ── Revenue card accordions (one open at a time) ──────────
+    (function () {
+      const cards = Array.from(document.querySelectorAll('.inv__cards .inv__card'));
+
+      function close(card) {
+        if (!card.classList.contains('is-open')) return;
+        const body = card.querySelector('.inv__card-body');
+        body.style.height = body.scrollHeight + 'px';
+        body.offsetHeight;
+        body.style.height = '0';
+        card.classList.remove('is-open');
+        card.querySelector('.inv__card-trigger').setAttribute('aria-expanded', 'false');
+      }
+
+      function open(card) {
+        const body = card.querySelector('.inv__card-body');
+        card.classList.add('is-open');
+        card.querySelector('.inv__card-trigger').setAttribute('aria-expanded', 'true');
+        body.style.height = body.scrollHeight + 'px';
+        body.addEventListener('transitionend', function onEnd() {
+          body.style.height = 'auto';
+          body.removeEventListener('transitionend', onEnd);
+        });
+      }
+
+      cards.forEach(function (card) {
+        card.querySelector('.inv__card-trigger').addEventListener('click', function () {
+          if (card.classList.contains('is-open')) close(card);
+          else open(card);
+        });
+      });
+    })();
+
+    // ── Scroll entrance animations ─────────────────────────────
+    (function () {
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-up').forEach(function (el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+
+</body>
+</html>

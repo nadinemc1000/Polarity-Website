@@ -9,6 +9,27 @@
 <body>
 
   <!-- ============================================================
+       NEWSLETTER POPUP
+       ============================================================ -->
+  <div class="nl-overlay" id="nl-overlay" role="dialog" aria-modal="true" aria-label="Newsletter signup">
+    <div class="nl-modal">
+      <button class="nl-close" id="nl-close" aria-label="Close">&#x2715;</button>
+      <div class="nl-img">
+        <img src="Assets/Overhead Couch Photo (cream beige).png" alt="Polarity couch overhead" class="nl-couch">
+      </div>
+      <div class="nl-body">
+        <h2 class="nl-heading">Join Our Email List<br><span class="nl-heading__sub">For 20% Off Your<br>First Purchase</span></h2>
+        <p class="nl-desc">Get the inside scoop on new products and upcoming launches. Sign up and save 20% on your first order.</p>
+        <input class="nl-input" id="nl-email" type="email" placeholder="Your Email" autocomplete="email">
+        <div class="nl-actions">
+          <button class="nl-btn nl-btn--yes" id="nl-submit">Yes, sign me up</button>
+          <button class="nl-btn nl-btn--no" id="nl-no">No, I hate saving money</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
        NAVIGATION
        ============================================================ -->
   <nav class="nav nav--primary">
@@ -23,7 +44,7 @@
         <li><a href="#hero" data-section="hero">Home</a></li>
         <li><a href="#vision" data-section="vision">Vision</a></li>
         <li><a href="#features" data-section="features">Features</a></li>
-        <li><a href="#about" data-section="about">About</a></li>
+        <li><a href="investors.html">Investors</a></li>
       </ul>
       <a href="checkout.html" class="nav__cart" aria-label="Checkout">
         <img src="Assets/Cart--Streamline-Ionic-Filled.png" alt="Cart" class="nav__cart-img">
@@ -40,7 +61,13 @@
     <img src="Assets/Hero Title Mobile.png" alt="Polarity" class="hero__title-img hero__title-reveal hero__title--mobile">
     <p class="hero__subtitle fade-up" data-delay="1">Adapting to Social Situations.</p>
     <div class="hero__img-wrap fade-up" data-delay="2">
-      <img src="Assets/Hero couch photo.png" alt="Polarity modular couch" class="hero__img">
+      <img src="Assets/new hero image with people.png" alt="Polarity modular couch" class="hero__img">
+      <div class="hero__preorder-wrap">
+        <a href="checkout.html" class="hero__preorder-btn">
+          <span class="hero__preorder-label">Preorder Now</span>
+          <span class="hero__preorder-icon">&#x2192;</span>
+        </a>
+      </div>
     </div>
   </section>
 
@@ -52,8 +79,8 @@
     <div class="vision__body">
       <p class="fade-up" data-delay="1">The growing disconnect between the participatory nature of contemporary entertainment and passive design of our furniture urges a dynamic system for support.</p>
       <p class="fade-up" data-delay="2">With Polarity, we envision a new category of seating. One that is modular, conversation-first, and blends sculptural mid-century inspiration with modern adaptability. Our system allows users to build social settings or comfortable spaces that also grow with their lives.</p>
-      <p class="fade-up" data-delay="3">This is not just a couch. It's a platform for connection, adaptability, and long-term living.</p>
     </div>
+    <img src="Assets/three modes.png" alt="Three modes of Polarity" class="vision__modes-img fade-up" data-delay="4">
   </section>
 
   <!-- ============================================================
@@ -73,7 +100,7 @@
         </ul>
       </div>
       <div class="feature__backrest-right fade-up" data-delay="1">
-        <img src="Assets/backrest photo.png" alt="Adaptable backrest" class="feature__backrest-img">
+        <img src="Assets/new backrest with person.png" alt="Adaptable backrest" class="feature__backrest-img">
       </div>
     </div>
 
@@ -94,8 +121,8 @@
     <!-- Feature 3 -->
     <div class="feature feature--function">
       <div class="feature__card feature__card--text feature__card--bottom fade-up">
-        <h3 class="feature__heading">Third Function</h3>
-        <p class="feature__body">More than seating, a spatial system. Our design introduces a third function:</p>
+        <h3 class="feature__heading">Social Anchor</h3>
+        <p class="feature__body">More than seating — a spatial system that shapes how people gather:</p>
         <ul class="feature__list">
           <li>Acts as a social anchor for gatherings</li>
           <li>Creates zones within open spaces</li>
@@ -118,12 +145,7 @@
         <img src="Assets/Overhead Couch Photo (cream beige).png" alt="Polarity couch overhead view" class="shop__photo" id="shop-couch-img">
       </div>
       <div class="shop__content fade-up" data-delay="1">
-        <h2 class="shop__heading">Shop Now</h2>
-        <p class="shop__pricing">
-          Unit Price:&ensp;<strong>$X,000</strong>
-          <span class="shop__pricing-sep">&ensp;&ensp;</span>
-          Due Today:&ensp;<strong>$250</strong>
-        </p>
+        <h2 class="shop__heading">Order Now</h2>
         <div class="shop__swatches">
           <div class="swatch is-selected" data-color="Cream Beige" data-img="Assets/Overhead Couch Photo (cream beige).png">
             <div class="swatch__circle swatch__circle--cream"></div>
@@ -145,7 +167,10 @@
             <input class="qty-input" id="qty-input" type="number" value="1" min="1" max="99" aria-label="Quantity">
             <button class="qty-btn" id="qty-plus" aria-label="Increase quantity">+</button>
           </div>
-          <a href="checkout.html" class="btn btn--red shop__btn">Preorder Now &rarr;</a>
+          <a href="checkout.html" class="hero__preorder-btn shop__preorder-btn">
+            <span class="hero__preorder-label">Preorder Now</span>
+            <span class="hero__preorder-icon">&#x2192;</span>
+          </a>
         </div>
       </div>
     </div>
@@ -154,125 +179,6 @@
   <!-- ============================================================
        BUSINESS MODEL
        ============================================================ -->
-  <section class="business" id="about">
-    <div class="container business__inner">
-      <div class="business__left fade-up">
-        <h2 class="business__heading">Business Model</h2>
-        <ul class="business__accordion">
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" aria-expanded="false">
-              Competitive Analysis <span class="accordion__icon">+</span>
-            </button>
-            <div class="accordion__body">
-              <p class="accordion__label">Our Position</p>
-              <p>We sit at the intersection of:</p>
-              <ul class="accordion__list">
-                <li>High design sensibility</li>
-                <li>True modular flexibility</li>
-                <li>Social-first functionality</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" aria-expanded="false">
-              Investment &amp; Revenue Model <span class="accordion__icon">+</span>
-            </button>
-            <div class="accordion__body">
-              <p class="accordion__label">Revenue Streams</p>
-              <ul class="accordion__list">
-                <li>Direct-to-consumer sales (primary)</li>
-                <li>Modular add-ons and expansion kits</li>
-                <li>Premium fabric/material upgrades</li>
-                <li>Limited edition or designer collaborations</li>
-              </ul>
-              <p class="accordion__label">Pricing Strategy</p>
-              <ul class="accordion__list">
-                <li>Positioned in the upper mid-market</li>
-                <li>More accessible than luxury icons, but more premium than mass modular brands</li>
-                <li>Designed for long-term value vs. disposable furniture</li>
-              </ul>
-              <p class="accordion__label">Investment Focus</p>
-              <ul class="accordion__list">
-                <li>Product development &amp; prototyping</li>
-                <li>Manufacturing partnerships</li>
-                <li>Brand + digital experience</li>
-                <li>Inventory &amp; logistics scaling</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" aria-expanded="false">
-              Business Model Canvas <span class="accordion__icon">+</span>
-            </button>
-            <div class="accordion__body">
-              <p class="accordion__label">User Persona</p>
-              <ul class="accordion__list">
-                <li>Urban professionals</li>
-                <li>Design-conscious renters &amp; homeowners</li>
-                <li>Hosts and socially active users</li>
-              </ul>
-              <p class="accordion__label">Value Proposition</p>
-              <p>Polarity is a modular, adaptable seating system that blends aesthetics, comfort, and social function.</p>
-              <p class="accordion__label">Customer Relationships</p>
-              <ul class="accordion__list">
-                <li>Customization tools</li>
-                <li>Post-purchase modular upgrades</li>
-                <li>Community-driven inspiration</li>
-              </ul>
-              <p class="accordion__label">Key Activities</p>
-              <ul class="accordion__list">
-                <li>Product design &amp; iteration</li>
-                <li>Manufacturing &amp; supply chain</li>
-                <li>Brand and community building</li>
-              </ul>
-              <p class="accordion__label">Key Resources</p>
-              <ul class="accordion__list">
-                <li>Design IP</li>
-                <li>Manufacturing partners</li>
-                <li>Brand identity</li>
-              </ul>
-              <p class="accordion__label">Key Partners</p>
-              <ul class="accordion__list">
-                <li>Fabric &amp; material suppliers</li>
-                <li>Manufacturing facilities</li>
-                <li>Logistics providers</li>
-              </ul>
-              <p class="accordion__label">Cost Structure</p>
-              <ul class="accordion__list">
-                <li>Production</li>
-                <li>Marketing</li>
-                <li>Operations &amp; logistics</li>
-              </ul>
-            </div>
-          </li>
-
-          <li class="accordion__item">
-            <button class="accordion__trigger" aria-expanded="false">
-              Financial Pro Forma <span class="accordion__icon">+</span>
-            </button>
-            <div class="accordion__body">
-              <p style="font-size:0.85rem;color:var(--color-gray-dark);line-height:1.7;">See the full financial projection in the panel →</p>
-            </div>
-          </li>
-
-        </ul>
-      </div>
-      <div class="business__right fade-up" data-delay="1">
-        <div class="business__panel business__panel--default is-active">
-          <div class="placeholder placeholder--red business__img" role="img" aria-label="Business model image"></div>
-        </div>
-        <div class="business__panel" id="panel-competitive">
-          <img src="Assets/Competitive Analysis chart 1.png" alt="Competitive Analysis Chart" class="business__panel-img">
-        </div>
-        <div class="business__panel" id="panel-proforma">
-          <iframe src="Polarity Financial Pro Forma/Sheet1.html" class="accordion__embed accordion__embed--sheet" title="Financial Pro Forma"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
 
   <!-- ============================================================
        BTS PREVIEW
@@ -330,11 +236,11 @@
 
       <h2 class="team__heading fade-up">Web Design Team</h2>
       <div class="team__row">
-        <div class="team-member fade-up" data-delay="1"><div class="team__photo-wrap"><img src="Assets/headshot emily.png" alt="Emily Milegan" class="team__photo"><div class="team__role">UI Design &amp; Layout</div></div><p class="team__name">Emily Milegan</p></div>
-        <div class="team-member fade-up" data-delay="2"><div class="team__photo-wrap"><img src="Assets/headshot nadine.png" alt="Nadine McMahon" class="team__photo"><div class="team__role">Web Development &amp; Interactions</div></div><p class="team__name">Nadine McMahon</p></div>
-        <div class="team-member fade-up" data-delay="3"><div class="team__photo-wrap"><img src="Assets/headshot mark.png" alt="Mark Hou" class="team__photo"><div class="team__role">Visual Design &amp; Branding</div></div><p class="team__name">Mark Hou</p></div>
-        <div class="team-member fade-up" data-delay="4"><div class="team__photo-wrap"><img src="Assets/headshot catherine.png" alt="Catherine Wang" class="team__photo"><div class="team__role">Content Strategy &amp; Copywriting</div></div><p class="team__name">Catherine Wang</p></div>
-        <div class="team-member fade-up" data-delay="5"><div class="team__photo-wrap"><img src="Assets/headshot zeinab.png" alt="Zeinab Drameh" class="team__photo"><div class="team__role">UX Research &amp; Accessibility</div></div><p class="team__name">Zeinab Drameh</p></div>
+        <div class="team-member fade-up" data-delay="1"><div class="team__photo-wrap"><img src="Assets/headshot emily.png" alt="Emily Milegan" class="team__photo"><div class="team__role">Visuals</div></div><p class="team__name">Emily Milegan</p></div>
+        <div class="team-member fade-up" data-delay="2"><div class="team__photo-wrap"><img src="Assets/headshot nadine.png" alt="Nadine McMahon" class="team__photo"><div class="team__role">Web Development</div></div><p class="team__name">Nadine McMahon</p></div>
+        <div class="team-member fade-up" data-delay="3"><div class="team__photo-wrap"><img src="Assets/headshot mark.png" alt="Mark Hou" class="team__photo"><div class="team__role">Design</div></div><p class="team__name">Mark Hou</p></div>
+        <div class="team-member fade-up" data-delay="4"><div class="team__photo-wrap"><img src="Assets/headshot catherine.png" alt="Catherine Wang" class="team__photo"><div class="team__role">Copywriting</div></div><p class="team__name">Catherine Wang</p></div>
+        <div class="team-member fade-up" data-delay="5"><div class="team__photo-wrap"><img src="Assets/headshot zeinab.png" alt="Zeinab Drameh" class="team__photo"><div class="team__role">Web Design &amp; Layout</div></div><p class="team__name">Zeinab Drameh</p></div>
       </div>
 
     </div>
@@ -351,9 +257,9 @@
     <div class="footer__bottom">
       <div class="container footer__inner">
         <div class="footer__left">
-          <p class="footer__cta">Try Polarity Now</p>
+          <p class="footer__cta">Sign Up For Our Newsletter</p>
           <div class="footer__pill">
-            <input class="footer__pill-input" type="email" placeholder="Enter your email" aria-label="Email address">
+            <input class="footer__pill-input" type="email" placeholder="Email" aria-label="Email address">
             <button class="btn btn--red footer__pill-btn">→</button>
           </div>
         </div>
@@ -447,7 +353,7 @@
         input.value = val;
       });
       // Save qty to localStorage so checkout page can read it
-      document.querySelector('.shop__btn').addEventListener('click', function () {
+      document.querySelector('.shop__preorder-btn').addEventListener('click', function () {
         localStorage.setItem('polarityQty', parseInt(input.value) || 1);
       });
     })();
@@ -494,6 +400,51 @@
             showPanel(null); // back to default
           }
         });
+      });
+    })();
+
+    // ── Newsletter popup ─────────────────────────────────────
+    (function () {
+      const overlay = document.getElementById('nl-overlay');
+      if (!overlay) return;
+
+      // Only show once per browser session
+      if (sessionStorage.getItem('nlDismissed')) {
+        overlay.classList.add('nl-hidden');
+        return;
+      }
+
+      function dismiss() {
+        overlay.style.transition = 'opacity 0.3s ease';
+        overlay.style.opacity = '0';
+        setTimeout(function () { overlay.classList.add('nl-hidden'); }, 300);
+        sessionStorage.setItem('nlDismissed', '1');
+      }
+
+      document.getElementById('nl-close').addEventListener('click', dismiss);
+      document.getElementById('nl-no').addEventListener('click', dismiss);
+
+      // Close on backdrop click
+      overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) dismiss();
+      });
+
+      // Close on Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') dismiss();
+      });
+
+      document.getElementById('nl-submit').addEventListener('click', function () {
+        const email = document.getElementById('nl-email').value.trim();
+        if (!email || !email.includes('@')) {
+          document.getElementById('nl-email').style.borderColor = '#fff';
+          document.getElementById('nl-email').focus();
+          return;
+        }
+        // Success state
+        const body = overlay.querySelector('.nl-body');
+        body.innerHTML = '<div style="text-align:center;padding:20px 0"><p style="font-family:var(--font-display);font-size:2rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:12px">You\'re in!</p><p style="color:rgba(255,255,255,0.82);font-size:0.9rem;line-height:1.6">Check your inbox for your 20% off code. Welcome to the Polarity family.</p></div>';
+        setTimeout(dismiss, 2400);
       });
     })();
 
